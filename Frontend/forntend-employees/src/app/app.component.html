@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  Employees
+  <span class="menu"> </span>
+  <button mat-icon-button class="icon" (click)="router.navigate(['employees'])">
+    <mat-icon> list </mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

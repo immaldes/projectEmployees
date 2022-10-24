@@ -1,0 +1,49 @@
+<div class="wrapper">
+    <div class="table">
+        <h1 class="name"> {{employee.firstName}} {{employee.lastName}} </h1>
+        <table class="detailsTable">
+            <tr>
+                <th> First Name </th>
+                <th> Last Name </th>
+                <th> Age </th>
+                <th> Function </th>
+                <th> Roles </th>
+            </tr>
+            <tr>
+                <td class="firstName"> {{ employee.firstName }} </td>
+                <td class="lastName"> {{ employee.lastName }} </td>
+                <td class="age"> {{ employee.age }} </td>
+                <td class="function"> {{ employee.function.name }} </td>
+                <!-- <td style="display: flex; flex-direction: column;" class="functioRoles"
+                    *ngFor="let role of employee.function.roles">
+                    {{ role }}
+                </td> -->
+                <ul class="roles">
+                    <li *ngFor="let role of employee.function.roles">
+                        <button [class.selected]="role === selectedRole" type="button" (click)="onSelect(role)">
+                            <span class="name">{{ role}}</span>
+                        </button>
+                    </li>
+                </ul>
+                <div class="addRoles"> Select a role to delete</div>
+                <div *ngIf="selectedRole">
+                    <label for="role-name">Role name: {{ selectedRole}}</label>
+                    <div class="addRoles"> Are you sure you want to delete ?</div>
+                    <button type="button" (click)="deleteRole(selectedRole)"> Delete</button>
+                </div>
+            </tr>
+        </table>
+        <div>
+            <div class="addRoles">Add roles: </div>
+            <mat-form-field appearance="fill">
+                <mat-label>Roles</mat-label>
+                <mat-select [formControl]="rolesOptions" multiple>
+                    <mat-option *ngFor="let role of map.get(employee.function.name)" [value]="role">{{role}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p>Selected: {{ rolesOptions.value }}</p>
+            <button mat-raised-button type="button" (click)="saveDetails()">Save</button>
+        </div>
+    </div>
+</div>

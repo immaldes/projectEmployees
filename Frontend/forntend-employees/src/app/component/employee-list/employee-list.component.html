@@ -1,0 +1,68 @@
+<!-- <div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col"> First Name </th>
+            <th scope="col"> Last Name </th>
+            <th scope="col"> Age </th>
+            <th scope="col"> Function </th>
+            <th scope="col"> Roles </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.firstName }}</td>
+            <td>{{ employee.lastName }}</td>
+            <td>{{ employee.age }}</td>
+            <td>{{ employee.function.name }}</td>
+            <td>{{ employee.function.roles }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> -->
+
+<!-- <html >
+    <body>
+      <h1 style="color: white; margin: auto;
+      width:30%; text-align:center; padding: top 30px; font-size:3rem; padding: bottom 30px; font-weight:700"> Employees </h1>
+      <div class="employees">
+          <ng-container *ngFor="let employee of employees">
+            <div class="employee">
+              <div class="employee-description">
+                <p class="employee-name">
+                  {{employee.firstName}}
+                  {{employee.lastName}}
+                </p>
+              </div>
+            </div>
+          </ng-container>
+      </div>
+    </body>
+  </html> -->
+
+
+<div class="employee">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div *ngFor="let employee of employees">
+      <div (click)="openEmployeeDetails(employee.id)">
+        <mat-card class="employee-card">
+          <mat-card-header>
+            <mat-card-title class="employee-name"> {{employee.firstName}} {{employee.lastName}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Function: {{employee.function.name}}
+            </p>
+            <p class="roles" *ngFor="let role of employee.function.roles">
+              Role: {{role}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
